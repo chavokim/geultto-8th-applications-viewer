@@ -16,8 +16,8 @@ export const QnA = ({header, answer, comment, setComment, applicant}: QnAProps) 
     const isFilled = !!comment;
     
     useEffect(() => {
-        if(isFilled && commentRef.current) {
-            commentRef.current.value = comment;
+        if(commentRef.current) {
+            commentRef.current.value = comment || "";
         }
     }, [isFilled, applicant])
     
