@@ -5,6 +5,7 @@ import {DisplayThemeType, ThemeButton} from "@/components/ThemeButton";
 
 const RawApplicationKey = "geultto_8th_applications";
 const ApplicationIdKey = "geultto_8th_application_id";
+const TextClassIdKey = "geultto_8th_text_class_id";
 
 export default function Home() {
     const [open, setOpen] = useState(false);
@@ -65,6 +66,14 @@ export default function Home() {
     useEffect(() => {
         if(applicationId) localStorage.setItem(ApplicationIdKey, applicationId.toString());
     }, [applicationId])
+
+    useEffect(() => {
+        if(textClassId) localStorage.setItem(TextClassIdKey, textClassId.toString());
+    }, [textClassId])
+    
+    useEffect(() => {
+        setTextClassId(Number(localStorage.getItem(TextClassIdKey) || "4"));
+    }, [])
     
     useEffect(() => {
         if(!rawApplication) return () => {};
@@ -112,7 +121,12 @@ export default function Home() {
                 </button>
                 <button
                     className="px-2 py-1 bg-rose-500 hover:bg-rose-700 text-white cursor-pointer rounded-md disabled:opacity-50"
-                    onClick={() => setTextClassId(prev => prev - 1)}
+                    onClick={() => setTextClassId(prev => {
+                        if(prev === 1) {
+                            localStorage.removeItem(TextClassIdKey);
+                        }
+                        return prev - 1;
+                    })}
                     disabled={textClassId === 0}
                 >
                     -
@@ -186,6 +200,7 @@ export default function Home() {
                                     ${applicationId === idx ? "bg-rose-700" : ""}
                                     `}
                                     onClick={() => {
+                                        if(!idx) localStorage.removeItem(ApplicationIdKey);
                                         setApplicationId(idx);
                                     }}
                                 >

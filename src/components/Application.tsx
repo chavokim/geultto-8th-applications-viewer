@@ -41,6 +41,7 @@ export const Application = ({application}: ApplicationProps) => {
                         answer={application[idx]}
                         comment={comments[idx]}
                         setComment={changeComment(idx)}
+                        applicant={application[0]}
                     />
                 ))
             }
