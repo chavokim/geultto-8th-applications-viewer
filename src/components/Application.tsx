@@ -20,6 +20,8 @@ export const Application = ({application}: ApplicationProps) => {
         const storedComments = localStorage.getItem(CommentsKeyPrefix + application[0]);
         if(storedComments) {
             setComments(JSON.parse(storedComments));
+        } else {
+            setComments([...Array(application.length)]);
         }
     }, [application])
     

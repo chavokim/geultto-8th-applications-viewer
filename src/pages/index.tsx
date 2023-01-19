@@ -14,7 +14,7 @@ export default function Home() {
     
     const [rawApplication, setRawApplication] = useState("");
     const [applications, setApplications] = useState<Array<Array<string>>>(Array());
-    const [textClassId, setTextClassId] = useState(4);
+    const [textClassId, setTextClassId] = useState(null);
     
     const handleChange = (e: ChangeEvent) => {
         const { target } = e;
