@@ -7,19 +7,19 @@ type QnAProps = {
     comment: string,
     setComment: (comment: string) => void,
     applicant: string,
+    commentKey: string,
 }
 
 
 
-export const QnA = ({header, answer, comment, setComment, applicant}: QnAProps) => {
+export const QnA = ({header, answer, comment, setComment, applicant, commentKey}: QnAProps) => {
     const commentRef = useRef<HTMLTextAreaElement>(null);
-    const isFilled = !!comment;
     
     useEffect(() => {
-        if(commentRef.current) {
+        if(applicant === commentKey && commentRef.current) {
             commentRef.current.value = comment || "";
         }
-    }, [isFilled, applicant])
+    }, [applicant, commentKey])
     
     return (
         <div className={"flex flex-col space-y-4"}>

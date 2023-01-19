@@ -9,26 +9,41 @@ type ApplicationProps = {
 const CommentsKeyPrefix = "geultto_8th_comments_";
 
 export const Application = ({application}: ApplicationProps) => {
-    const [comments, setComments] = useState<Array<string>>([...Array(application.length)]);
+    const [comments, setComments] = useState<{ 
+        key: string,
+        data: Array<string> 
+    }>({
+        key: "",
+        data: [...Array(application.length)],
+    });
     
     useEffect(() => {
-        if(comments.some((comment) => !!comment))
-            localStorage.setItem(CommentsKeyPrefix + application[0], JSON.stringify(comments));
+        if(comments.data.some((comment) => !!comment))
+            localStorage.setItem(CommentsKeyPrefix + application[0], JSON.stringify(comments.data));
     }, [comments])
     
     useEffect(() => {
         const storedComments = localStorage.getItem(CommentsKeyPrefix + application[0]);
         if(storedComments) {
-            setComments(JSON.parse(storedComments));
+            setComments({
+                key: application[0],
+                data: JSON.parse(storedComments)
+            });
         } else {
-            setComments([...Array(application.length)]);
+            setComments({
+                key: application[0],
+                data: [...Array(application.length)],
+            });
         }
     }, [application])
     
     const changeComment = (index: number) => (comment: string) => {
-        const newComments = [...comments];
+        const newComments = [...comments.data];
         newComments[index] = comment;
-        setComments(newComments);
+        setComments(prev => ({
+            ...prev,
+            data: newComments,
+        }));
     };
     
     return (
@@ -41,9 +56,10 @@ export const Application = ({application}: ApplicationProps) => {
                         key={idx}
                         header={header}
                         answer={application[idx]}
-                        comment={comments[idx]}
+                        comment={comments.data[idx]}
                         setComment={changeComment(idx)}
                         applicant={application[0]}
+                        commentKey={comments.key}
                     />
                 ))
             }
@@ -57,7 +73,7 @@ export const Application = ({application}: ApplicationProps) => {
                     <p
                         className={"rounded-md p-2 bg-[rgb(var(--card-rgb))] whitespace-pre-line"}
                     >
-                        {comments.reduce((acc, cur) => !!cur ? acc + cur + "\n" : acc, "")}
+                        {comments.data.reduce((acc, cur) => !!cur ? acc + cur + "\n" : acc, "")}
                     </p>
                 </div>
             </div>
