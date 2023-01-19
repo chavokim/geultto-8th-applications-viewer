@@ -14,7 +14,7 @@ export default function Home() {
     
     const [rawApplication, setRawApplication] = useState("");
     const [applications, setApplications] = useState<Array<Array<string>>>(Array());
-    const [textClassId, setTextClassId] = useState(null);
+    const [textClassId, setTextClassId] = useState<number | null>(null);
     
     const handleChange = (e: ChangeEvent) => {
         const { target } = e;
@@ -68,7 +68,7 @@ export default function Home() {
     }, [applicationId])
 
     useEffect(() => {
-        if(textClassId) localStorage.setItem(TextClassIdKey, textClassId.toString());
+    if(textClassId) localStorage.setItem(TextClassIdKey, (textClassId as number).toString());
     }, [textClassId])
     
     useEffect(() => {
@@ -114,7 +114,7 @@ export default function Home() {
                 </button>
                 <button
                     className="px-2 py-1 bg-rose-500 hover:bg-rose-700 text-white cursor-pointer rounded-md disabled:opacity-50"
-                    onClick={() => setTextClassId(prev => prev + 1)}
+                    onClick={() => setTextClassId(prev => prev! + 1)}
                     disabled={textClassId === TextClass.length - 1}
                 >
                     +
@@ -125,7 +125,7 @@ export default function Home() {
                         if(prev === 1) {
                             localStorage.removeItem(TextClassIdKey);
                         }
-                        return prev - 1;
+                        return prev! - 1;
                     })}
                     disabled={textClassId === 0}
                 >
@@ -156,7 +156,7 @@ export default function Home() {
             </div>
         </div>
       </header>
-      <main className={`${TextClass[textClassId]} min-h-screen`}>
+      <main className={`${TextClass[textClassId!]} min-h-screen`}>
           <div 
             className={"h-16"}
           />
