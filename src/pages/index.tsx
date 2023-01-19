@@ -142,7 +142,7 @@ export default function Home() {
             </div>
         </div>
       </header>
-      <main className={`${TextClass[textClassId]} h-screen`}>
+      <main className={`${TextClass[textClassId]} min-h-screen`}>
           <div 
             className={"h-16"}
           />
