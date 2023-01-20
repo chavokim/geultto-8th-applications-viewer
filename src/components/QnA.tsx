@@ -8,11 +8,12 @@ type QnAProps = {
     setComment: (comment: string) => void,
     applicant: string,
     commentKey: string,
+    isHidden?: boolean,
 }
 
 
 
-export const QnA = ({header, answer, comment, setComment, applicant, commentKey}: QnAProps) => {
+export const QnA = ({header, answer, comment, setComment, applicant, commentKey, isHidden}: QnAProps) => {
     const commentRef = useRef<HTMLTextAreaElement>(null);
     
     useEffect(() => {
@@ -30,7 +31,7 @@ export const QnA = ({header, answer, comment, setComment, applicant, commentKey}
                     </p>
                     <p 
                         className={"rounded-md p-2 bg-[rgb(var(--card-rgb))]"}
-                        dangerouslySetInnerHTML={{__html: makeAutoUrlComponent(answer)}}
+                        dangerouslySetInnerHTML={{__html: isHidden ? "************" : makeAutoUrlComponent(answer)}}
                     />
                 </div>
                 <textarea

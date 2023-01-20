@@ -28,6 +28,10 @@ export const Headers = [
     "\"궁금하신 부분을 작성해주세요. OT 때 최대한 궁금하신 내용을 반영해서 공유드리겠습니다!\n\n이후 프로세스는 아래와 같습니다\n- 합격자 발표\n- 슬랙 초대\n- OT\n- 활동 시작\""
 ]
 
+export const HiddenHeaderIds = [
+    5, 17, 18, 19, 20, 21, 22, 23, 24, 25
+]
+
 export const TextClass = [
     "text-xs",
     "text-sm",

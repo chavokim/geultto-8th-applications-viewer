@@ -1,4 +1,4 @@
-import {Headers} from "@/common";
+import {Headers, HiddenHeaderIds} from "@/common";
 import { QnA } from "./QnA";
 import {useEffect, useState} from "react";
 
@@ -60,6 +60,7 @@ export const Application = ({application}: ApplicationProps) => {
                         setComment={changeComment(idx)}
                         applicant={application[0]}
                         commentKey={comments.key}
+                        isHidden={HiddenHeaderIds.includes(idx)}
                     />
                 ))
             }
