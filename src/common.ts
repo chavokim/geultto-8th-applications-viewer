@@ -48,3 +48,9 @@ export const makeAutoUrlComponent = (str: string) => {
     const subst = '<a href="$1" target="_blank" class="underline">$1</a>';
     return str.replace(re, subst);
 }
+
+export const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+    
+    alert("복사되었습니다!\n\n" + text);
+}

@@ -1,4 +1,4 @@
-import {Headers, HiddenHeaderIds} from "@/common";
+import {copyToClipboard, Headers, HiddenHeaderIds} from "@/common";
 import { QnA } from "./QnA";
 import {useEffect, useState} from "react";
 
@@ -47,6 +47,8 @@ export const Application = ({application}: ApplicationProps) => {
         }));
     };
     
+    const mergedComments = comments.data.reduce((acc, cur) => !!cur ? acc + cur + "\n" : acc, "");
+    
     return (
         <div
             className={"flex flex-col space-y-4 py-10"}
@@ -72,11 +74,21 @@ export const Application = ({application}: ApplicationProps) => {
                     <p>
                         코멘트 총합
                     </p>
-                    <p
-                        className={"rounded-md p-2 bg-[rgb(var(--card-rgb))] whitespace-pre-line"}
+                    <div
+                        className={"relative"}
                     >
-                        {comments.data.reduce((acc, cur) => !!cur ? acc + cur + "\n" : acc, "")}
-                    </p>
+                        <p
+                            className={"rounded-md p-2 bg-[rgb(var(--card-rgb))] whitespace-pre-line"}
+                        >
+                            {mergedComments}
+                        </p>
+                        <button
+                            onClick={() => copyToClipboard(mergedComments)}
+                            className={"absolute top-0 right-0 px-5 py-2 bg-indigo-500 hover:bg-indigo-700 text-white cursor-pointer rounded-md"}
+                        >
+                            copy
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
