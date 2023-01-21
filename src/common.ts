@@ -52,7 +52,10 @@ export const makeAutoUrlComponent = (str: string) => {
 }
 
 export const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
+    navigator.clipboard.writeText(text).then(function() {
+        alert("복사되었습니다!\n\n" + text);
+    });
+
+
     
-    alert("복사되었습니다!\n\n" + text);
 }
