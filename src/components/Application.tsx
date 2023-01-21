@@ -18,7 +18,8 @@ export const Application = ({application}: ApplicationProps) => {
     });
     
     useEffect(() => {
-        if(comments.data.some((comment) => !!comment))
+        console.log(application[0])
+        if(application[0] === comments.key && comments.data.some((comment) => !!comment))
             localStorage.setItem(CommentsKeyPrefix + application[0], JSON.stringify(comments.data));
     }, [comments])
     
