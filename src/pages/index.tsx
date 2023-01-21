@@ -1,5 +1,5 @@
 import {ChangeEvent, MouseEventHandler, useCallback, useEffect, useState} from "react";
-import {Headers, TextClass} from "@/common";
+import {CommentsKeyPrefix, Headers, TextClass} from "@/common";
 import {Application} from "@/components/Application";
 import {DisplayThemeType, ThemeButton} from "@/components/ThemeButton";
 
@@ -204,7 +204,8 @@ export default function Home() {
                                         setApplicationId(idx);
                                     }}
                                 >
-                                    {application[0]}
+                                    {(!!localStorage.getItem(CommentsKeyPrefix + application[0])) 
+                                        ? "✅ " : ""}{application[0]}
                                 </button>
                             ))
                           }

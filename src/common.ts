@@ -43,6 +43,8 @@ export const TextClass = [
     "text-4xl",
 ]
 
+export const CommentsKeyPrefix = "geultto_8th_comments_";
+
 export const makeAutoUrlComponent = (str: string) => {
     const re = /(?![^<]*>|[^<>]*<\/)((https?:)\/\/[a-z0-9&#=.\/\-?_]+)/gi;
     const subst = '<a href="$1" target="_blank" class="underline">$1</a>';

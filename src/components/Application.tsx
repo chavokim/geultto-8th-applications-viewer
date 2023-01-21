@@ -1,12 +1,10 @@
-import {copyToClipboard, Headers, HiddenHeaderIds} from "@/common";
+import {CommentsKeyPrefix, copyToClipboard, Headers, HiddenHeaderIds} from "@/common";
 import { QnA } from "./QnA";
 import {useEffect, useState} from "react";
 
 type ApplicationProps = {
     application: Array<string>,
 }
-
-const CommentsKeyPrefix = "geultto_8th_comments_";
 
 export const Application = ({application}: ApplicationProps) => {
     const [comments, setComments] = useState<{ 
@@ -18,7 +16,6 @@ export const Application = ({application}: ApplicationProps) => {
     });
     
     useEffect(() => {
-        console.log(application[0])
         if(application[0] === comments.key && comments.data.some((comment) => !!comment))
             localStorage.setItem(CommentsKeyPrefix + application[0], JSON.stringify(comments.data));
     }, [comments])
