@@ -3,9 +3,9 @@ import {CommentsKeyPrefix, Headers, TextClass} from "@/common";
 import {Application} from "@/components/Application";
 import {DisplayThemeType, ThemeButton} from "@/components/ThemeButton";
 
-const RawApplicationKey = "geultto_8th_applications";
-const ApplicationIdKey = "geultto_8th_application_id";
-const TextClassIdKey = "geultto_8th_text_class_id";
+const RawApplicationKey = "geultto_10th_applications";
+const ApplicationIdKey = "geultto_10th_application_id";
+const TextClassIdKey = "geultto_10th_text_class_id";
 
 export default function Home() {
     const [open, setOpen] = useState(false);
